@@ -9,3 +9,23 @@
 Чтобы протолкнуть заказ вручную, в таблице ```onec_parsed_docs``` меняем ```is_checked``` с ```FALSE``` на ```TRUE```
 
 Чтобы повторно распечатать накладную, в таблице ```onec_parsed_docs``` меняем ```is_printed``` с ```TRUE``` на ```FALSE```, остальные поля перезапишутся автоматически
+
+Приложение получает заказ из таблицы ```orders_table``` по следующим полям:
+```python
+# MarketplaceOrders = orders_table
+...
+MarketplaceOrders.delivery_qr == code,
+MarketplaceOrders.updated >= start_of_day,
+MarketplaceOrders.updated <= end_of_day
+...
+```
+
+Сравнивает с 1С по следующим полям:
+```python
+# OneCParsedDocs = onec_parsed_docs
+...
+OneCParsedDocs.invoice_product_articul == order_row.artikul,
+OneCParsedDocs.invoice_product_order_id == order_row.order_num,
+OneCParsedDocs.checked_by.is_(None)
+...
+```
