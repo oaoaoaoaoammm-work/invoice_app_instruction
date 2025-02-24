@@ -15,8 +15,8 @@
 # MarketplaceOrders = orders_table
 ...
 MarketplaceOrders.delivery_qr == code,  # code получает со сканера
-MarketplaceOrders.updated >= start_of_day, # дата сегодня + 00:00:01 (формат даты: например 01.01.2025 00:00:01)
-MarketplaceOrders.updated <= end_of_day # дата сегодня + 23:59:59 (формат даты: например 01.01.2025 23:59:59)
+MarketplaceOrders.updated >= start_of_day,  # дата сегодня + 00:00:01 (формат даты: например 01.01.2025 00:00:01)
+MarketplaceOrders.updated <= end_of_day  # дата сегодня + 23:59:59 (формат даты: например 01.01.2025 23:59:59)
 ...
 ```
 
@@ -24,8 +24,8 @@ MarketplaceOrders.updated <= end_of_day # дата сегодня + 23:59:59 (ф
 ```python
 # OneCParsedDocs = onec_parsed_docs
 ...
-OneCParsedDocs.invoice_product_articul == order_row.artikul,
-OneCParsedDocs.invoice_product_order_id == order_row.order_num,
-OneCParsedDocs.checked_by.is_(None)
+OneCParsedDocs.invoice_product_articul == order_row.artikul,   # артикул из таблицы orders_table
+OneCParsedDocs.invoice_product_order_id == order_row.order_num,  # номер заказа из orders_table
+OneCParsedDocs.checked_by.is_(None)  # поле должно оставаться пустым, is_printed не добавил потому что не может быть распечатан без полной проверки(is_checked)
 ...
 ```
