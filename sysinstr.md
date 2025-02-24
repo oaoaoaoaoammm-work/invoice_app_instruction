@@ -14,9 +14,9 @@
 ```python
 # MarketplaceOrders = orders_table
 ...
-MarketplaceOrders.delivery_qr == code,
-MarketplaceOrders.updated >= start_of_day,
-MarketplaceOrders.updated <= end_of_day
+MarketplaceOrders.delivery_qr == code,  # code получает со сканера
+MarketplaceOrders.updated >= start_of_day, # дата сегодня + 00:00:01 (формат даты: например 01.01.2025 00:00:01)
+MarketplaceOrders.updated <= end_of_day # дата сегодня + 23:59:59 (формат даты: например 01.01.2025 23:59:59)
 ...
 ```
 
